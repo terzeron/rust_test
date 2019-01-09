@@ -1,0 +1,6 @@
+[package]
+name = "fmt_test"
+version = "0.1.0"
+authors = ["Youngil Cho <terzeron@gmail.com>"]
+
+[dependencies]
