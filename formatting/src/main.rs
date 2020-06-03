@@ -29,6 +29,7 @@ fn print_test() {
 fn fmt_test1() {
     // {:?}는 format for debugging
     println!("{:?} months in a year.", 12);
+    // debugging 모드에서는 따옴표가 붙는다는 점에 유의할 것
     println!("{1:?} {0:?} is the {actor:?} name.", "Slater", "Christian", actor = "actor is");
 
     // derive 속성으로 아래 struct를 fmt::Debug의 구현을 제공함
@@ -133,10 +134,31 @@ fn fmt_test4() {
     }
 }
 
+fn fmt_test5() {
+    #[derive(Debug)]
+    struct MinMax(i64, i64);
+
+    impl fmt::Display for MinMax {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "({}, {})", self.0, self.1)
+        }
+    }
+
+    let minmax = MinMax(0, 14);
+    println!("Compare structures:");
+    println!("Display: {}", minmax);
+    println!("Debug: {:?}", minmax);
+
+    let big_range = MinMax(-300, 300);
+    let small_range = MinMax(-3,3 );
+    println!("{big}, {small}", small = small_range, big = big_range);
+}
+
 fn main() {
     print_test();
     fmt_test1();
     fmt_test2();
     fmt_test3();
     fmt_test4();
+    fmt_test5();
 }
