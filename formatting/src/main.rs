@@ -1,4 +1,3 @@
-
 fn print_test() {
     println!("Hello, world!");
 
@@ -45,8 +44,6 @@ fn fmt_test1() {
 
 
 fn fmt_test2() {
-    use std::fmt;
-
     // Java로 치면 toString() 재정의
     struct Structure(i32);
     impl fmt::Display for Structure {
@@ -72,8 +69,6 @@ fn fmt_test2() {
 }
 
 fn fmt_test3() {
-    use std::fmt;
-
     struct List(Vec<i32>);
 
     impl fmt::Display for List {
@@ -81,10 +76,10 @@ fn fmt_test3() {
             let List(ref vec) = *self;
             // try!는 예외발생을 감지하는 매크로
             // 예외가 발생하면 에러를 던지고 아니면 진행함
-            try!(write!(f, "["));
+            write!(f, "[")?;
             for (count, v) in vec.iter().enumerate() {
-                if count != 0 { try!(write!(f, ", ")); }
-                try!(write!(f, "{}: {}", count, v));
+                if count != 0 { write!(f, ", ")?; }
+                write!(f, "{}: {}", count, v)?;
             }
             write!(f, "]")
         }
