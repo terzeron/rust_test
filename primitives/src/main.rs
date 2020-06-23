@@ -1,14 +1,20 @@
 fn type_test() {
     let logical: bool = true;
-    let a_float: f64 = 1.0;
+    println!("bool: {}", logical);
+    let a_float: f64 = 1.01;
+    println!("f64: {}", a_float);
     let an_integer = 5i32;
+    println!("i32: {}", an_integer);
 
-    let default_float = 3.0;
+    let default_float = 3.5;
+    println!("implicit f64: {}", default_float);
     let default_integer = 7;
+    println!("implicit i32: {}", default_integer);
 
     let mut mutable = 12;
-
     //mutable = true; // error
+    mutable = 33;
+    println!("mutable: {}", mutable);
 }
 
 

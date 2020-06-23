@@ -1,3 +1,5 @@
+use std::fmt::{self, Formatter, Display};
+
 fn print_test() {
     println!("Hello, world!");
 
@@ -69,6 +71,7 @@ fn fmt_test2() {
     println!("Debug: {:?}", point);
 }
 
+
 fn fmt_test3() {
     struct List(Vec<i32>);
 
@@ -86,43 +89,41 @@ fn fmt_test3() {
         }
     }
 
-    let v = List(vec![1, 2, 3]);
+    let v = List(vec![50, 37, 99, 78]);
     println!("{}", v);
 }
 
 
-use std::fmt::{self, Formatter, Display};
-
-struct City {
-    name: &'static str,
-    lat: f32,
-    lon: f32,
-}
-
-impl Display for City {
-    // f: buffer
-    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        let lat_c = if self.lat >= 0.0 { 'N' } else { 'S' };
-        let lon_c = if self.lon >= 0.0 { 'E' } else { 'W' };
-
-        write!(f, "{}: {:.3}'{} {:.3}'{}", self.name, self.lat.abs(), lat_c, self.lon.abs(), lon_c)
-    }
-}
-
-#[derive(Debug)]
-struct Color {
-    red: u8,
-    green: u8,
-    blue: u8,
-}
-
 fn fmt_test4() {
+    struct City {
+        name: &'static str,
+        lat: f32,
+        lon: f32,
+    }
+
+    impl Display for City {
+        // f: buffer
+        fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+            let lat_c = if self.lat >= 0.0 { 'N' } else { 'S' };
+            let lon_c = if self.lon >= 0.0 { 'E' } else { 'W' };
+
+            write!(f, "{}: {:.3}'{} {:.3}'{}", self.name, self.lat.abs(), lat_c, self.lon.abs(), lon_c)
+        }
+    }
+
     for city in [
         City { name: "Dublin", lat: 53.347778, lon: -6.259722 },
         City { name: "Oslo", lat: 59.95, lon: 10.75 },
         City { name: "Vancouver", lat: 49.25, lon: -123.1 },
     ].iter() {
         println!("{}", *city);
+    }
+
+    #[derive(Debug)]
+    struct Color {
+        red: u8,
+        green: u8,
+        blue: u8,
     }
 
     for color in [
@@ -157,7 +158,7 @@ fn fmt_test5() {
 fn main() {
     print_test();
     fmt_test1();
-    fmt_test2();
+    fmt_test2()
     fmt_test3();
     fmt_test4();
     fmt_test5();
