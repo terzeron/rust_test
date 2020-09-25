@@ -23,7 +23,7 @@ fn print_test() {
     struct Structure(i32);
     //println!("This struct '{}' won't print...", Structure(3));
 
-    let pi = 3.141592;
+    let pi = std::f64::consts::PI;
     println!("Pi is roughly {:.*}", 3, pi);
 }
 
@@ -158,7 +158,7 @@ fn fmt_test5() {
 fn main() {
     print_test();
     fmt_test1();
-    fmt_test2()
+    fmt_test2();
     fmt_test3();
     fmt_test4();
     fmt_test5();

@@ -12,6 +12,7 @@ fn type_test() {
     println!("implicit i32: {}", default_integer);
 
     let mut mutable = 12;
+    println!("mutable: {}", mutable);
     //mutable = true; // error
     mutable = 33;
     println!("mutable: {}", mutable);
@@ -53,7 +54,7 @@ fn tuple_test() {
     println!("pair is {:?}", pair);
     println!("the reversed pair is {:?}", reverse(pair));
 
-    println!("one element tuple: {:?}", (5u32,));
+    println!("one element tuple: {:?}", (5u32, ));
     println!("just an integer: {:?}", (5u32));
 
     let tuple = (1, "hello", 4.5, true);
@@ -64,6 +65,32 @@ fn tuple_test() {
     println!("{:?}", matrix);
 }
 
+fn array_test() {
+    use std::mem;
+
+    fn analyze_slice(slice: &[i32]) {
+        println!("first element of the slice: {}", slice[0]);
+        println!("the slice has {} elements", slice.len());
+    }
+
+    let xs: [i32; 5] = [1, 2, 3, 4, 5];
+    let ys: [i32; 500] = [53; 500];
+
+    println!("first element of the array: {}", xs[0]);
+    println!("second element of the array: {}", xs[1]);
+
+    println!("array size: {}", xs.len());
+    println!("array occupies {} bytes", mem::size_of_val(&xs));
+
+    println!("borrow the whole array as a slice");
+    analyze_slice(&xs);
+
+    println!("borrow a section of the array as a slice");
+    analyze_slice(&ys[2..10]);
+
+    println!("{}", xs[999]);
+}
+
 fn main() {
     println!("\n------ type_test() ------");
     type_test();
@@ -71,4 +98,6 @@ fn main() {
     arithmetic_test();
     println!("\n------ tuple_test() ------");
     tuple_test();
+    println!("\n------ array_test() ------");
+    array_test();
 }
