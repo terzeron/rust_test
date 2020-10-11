@@ -59,9 +59,57 @@ fn enum_test2() {
     }
 }
 
+fn enum_test3() {
+    use List::*;
+
+    enum List {
+        Cons(u32, Box<List>),
+        Nil,
+    }
+
+    impl List {
+        fn new() -> List {
+            Nil
+        }
+
+        fn prepend(self, elem: u32) -> List {
+            Cons(elem, Box::new(self))
+        }
+
+        fn len(&self) -> u32 {
+            // List 타입인지 확인
+            match *self {
+                // self가 대여 중이라서 tail의 참조를 얻은 다음에 길이를 increment
+                Cons(_, ref tail) => 1 + tail.len(),
+                Nil => 0
+            }
+        }
+
+        fn stringify(&self) -> String {
+            match *self {
+                Cons(head, ref tail) => {
+                    format!("{}, {}", head, tail.stringify())
+                }
+                Nil => {
+                    format!("Nil")
+                }
+            }
+        }
+    }
+    let mut list = List::new();
+    list = list.prepend(1);
+    list = list.prepend(2);
+    list = list.prepend(3);
+
+    println!("linked list has length: {}", list.len());
+    println!("{}", list.stringify());
+}
+
 fn main() {
     println!("--------- enum_test1 ---------");
     enum_test1();
     println!("--------- enum_test2 ---------");
     enum_test2();
+    println!("--------- enum_test3 ---------");
+    enum_test3();
 }
