@@ -41,6 +41,25 @@ fn declare_first_test() {
     println!("another binding: {}", another_binding);
 }
 
+fn expression_test() {
+    let x = 5u32;
+
+    let y = {
+        let x_squared = x * x;
+        let x_cube = x_squared * x;
+
+        x_cube + x_squared + x;
+    };
+
+    let z = {
+        2 * x;
+    };
+
+    println!("x is {:?}", x);
+    println!("y is {:?}", y);
+    println!("z is {:?}", z);
+}
+
 fn main() {
     println!("------ mutability_test() ------");
     mutability_test();
@@ -48,4 +67,6 @@ fn main() {
     scope_shadowing_test();
     println!("------ declare_first_test() ------");
     declare_first_test();
+    println!("------ expression_test() ------");
+    expression_test();
 }
