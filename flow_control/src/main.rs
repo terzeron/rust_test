@@ -1,3 +1,5 @@
+#![allow(unreachable_code)]
+
 fn if_else_test() {
     let n = 5;
 
@@ -39,9 +41,65 @@ fn loop_test() {
     }
 }
 
+fn nesting_and_labels_test() {
+    'outer: loop {
+        println!("Entered the outer loop");
+
+        'inner: loop {
+            println!("Entered the inner loop");
+
+            // This would break only the inner loop
+            //break;
+
+            // This breaks the outer loop
+            break 'outer;
+        }
+        println!("This point will never be reached");
+    }
+    println!("Exited the outer loop");
+}
+
+fn returning_from_loops_test() {
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    assert_eq!(result, 20);
+}
+
+fn while_test() {
+    let mut n = 1;
+
+    while n < 101 {
+        if n % 15 == 0 {
+            println!("fizzbuzz");
+        } else if n % 3 == 0 {
+            println!("fizz");
+        } else if n % 5 == 0 {
+            println!("buzz");
+        } else {
+            println!("{}", n);
+        }
+
+        n += 1;
+    }
+}
+
 fn main() {
     println!("\n------ if_else_test() ------");
     if_else_test();
     println!("\n------ loop_test() ------");
     loop_test();
+    println!("\n------ nesting_and_labels_test() ------");
+    nesting_and_labels_test();
+    println!("\n------ returning_from_loops_test() ------");
+    returning_from_loops_test();
+    println!("\n------ while_test() ------");
+    while_test();
 }
