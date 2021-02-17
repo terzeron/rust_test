@@ -91,6 +91,39 @@ fn while_test() {
     }
 }
 
+fn for_and_range_test() {
+    for n in 1..101 {
+        if n % 15 == 0 {
+            print!("fizzbuzz ");
+        } else if n % 3 == 0 {
+            print!("fizz ");
+        } else if n % 5 == 0 {
+            print!("buzz ");
+        } else {
+            print!("{} ", n)
+        }
+    }
+    println!("")
+}
+
+fn match_test() {
+    let number = 13;
+    println!("Tell me about {}", number);
+    match number {
+        1 => println!("One!"),
+        2 | 3 | 5 | 7 | 11 => println!("This is a prime"),
+        13...19 => println!("A teen"),
+        _ => println!("Ain't special")
+    }
+
+    let boolean = true;
+    let binary = match boolean {
+        false => 0,
+        true => 1,
+    };
+    println!("{} -> {}", boolean, binary)
+}
+
 fn main() {
     println!("\n------ if_else_test() ------");
     if_else_test();
@@ -102,4 +135,8 @@ fn main() {
     returning_from_loops_test();
     println!("\n------ while_test() ------");
     while_test();
+    println!("\n------ for_and_range_test() ------");
+    for_and_range_test();
+    println!("\n------ match_test() ------");
+    match_test();
 }
