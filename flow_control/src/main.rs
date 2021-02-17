@@ -124,6 +124,16 @@ fn match_test() {
     println!("{} -> {}", boolean, binary)
 }
 
+fn match_destructing_to_tuple_test() {
+    let pair = (0, -2);
+    println!("Tell me about {:?}", pair);
+    match pair {
+        (0, y) => println!("First is 0 and y is {:?}", y),
+        (x, 0) => println!("x is {:?} and last is 0", x),
+        _ => println!("It doesn't matter what they are"),
+    }
+}
+
 fn main() {
     println!("\n------ if_else_test() ------");
     if_else_test();
@@ -139,4 +149,7 @@ fn main() {
     for_and_range_test();
     println!("\n------ match_test() ------");
     match_test();
+    println!("\n------ match_destructing_to_tuple_test() ------");
+    match_destructing_to_tuple_test();
+
 }
