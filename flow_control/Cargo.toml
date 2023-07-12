@@ -1,5 +1,5 @@
 [package]
-name = "rust_test"
+name = "flow_control"
 version = "0.1.0"
 authors = ["terzeron <terzeron@gmail.com>"]
 edition = "2018"
