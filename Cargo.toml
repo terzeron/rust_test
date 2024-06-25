@@ -1,4 +1,4 @@
-workspace = { members = ["guessing_game01", "variable_and_mutability02", "data_type03", "function04", "control_flow05"] }
+workspace = { members = ["guessing_game01", "variable_and_mutability02", "data_type03", "function04", "control_flow05", "ownership06", "reference_and_borrow07", "slice08"] }
 [package]
 name = "rust_test"
 version = "0.1.0"
